@@ -49,3 +49,14 @@
   </SECTION>
 </body>
 </html>
+
+<script>
+  Dropzone.options.sampleFile = {
+    maxFilesize: 500000,
+    init: function() {
+      this.on("uploadprogress", function(file, progress) {
+        console.log("File progress", progress);
+      });
+    }
+  }
+</script>
