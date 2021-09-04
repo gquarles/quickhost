@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>qHost</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css'>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"
+    integrity="sha512-VQQXLthlZQO00P+uEu4mJ4G4OAgqTtKG1hri56kQY1DtdLeIqhKUp9W/lllDDu3uN3SnUNawpW7lBda8+dSi7w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    body {
+      background: rgb(243, 244, 245);
+      height: 100%;
+      color: rgb(100, 108, 127);
+      line-height: 1.4rem;
+      font-family: Roboto, "Open Sans", sans-serif;
+      font-size: 20px;
+      font-weight: 300;
+      text-rendering: optimizeLegibility;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .dropzone {
+      background: white;
+      border-radius: 5px;
+      border: 2px dashed rgb(0, 135, 247);
+      border-image: none;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+
+</head>
+
+<body>
+  <h1>qHost File Upload</h1>
+  <SECTION>
+    <DIV id="dropzone">
+      <FORM class="dropzone needsclick" id="sampleFile" action="/upload" method="post">
+        <DIV class="dz-message needsclick">
+          Drop files here or click to upload.<BR>
+        </DIV>
+      </FORM>
+    </DIV>
+  </SECTION>
+</body>
+</html>
