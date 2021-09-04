@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
@@ -30,6 +31,6 @@ app.post('/upload', upload.single('file'), (req, res) => {
   return res.status(200).send(req.file);
 });
 
-app.listen(80, () => {
-  console.log('Express server listening on port 80');
+app.listen(process.env.PORT, () => {
+  console.log(`Express server listening on port ${process.env.PORT}`);
 });
