@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>qHost</title>
@@ -47,15 +48,37 @@
       </FORM>
     </DIV>
   </SECTION>
+
+  <br>
+
+  <center>
+    
+  </center>
 </body>
+
 </html>
 
 <script>
   Dropzone.options.sampleFile = {
     maxFilesize: 500000,
-    init: function() {
-      this.on("uploadprogress", function(file, progress) {
-        console.log("File progress", progress);
+    init: function () {
+      this.on("uploadprogress", function (file, progress) {
+        if (progress == 100) {
+          console.log(file.name);
+          
+          var center = document.createElement('center');
+          var newLink = document.createElement('a');
+          center.appendChild(newLink);
+          newLink.appendChild(document.createElement('br'));
+          newLink.appendChild(document.createTextNode(file.name));
+          newLink.title = file.name;
+          newLink.href = `files/${file.name}`;
+
+          document.body.appendChild(center);
+
+          navigator.clipboard.writeText(newLink.href);
+
+        }
       });
     }
   }

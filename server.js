@@ -4,20 +4,26 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.static(__dirname +'/public'));
+app.use(express.static(__dirname + '/public'));
 
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'uploads/')
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname)
-    }
-  })
-  const upload = multer({storage: storage})
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
+const upload = multer({ storage: storage })
 
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, '/index.html'));
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, '/index.html'));
+});
+
+app.get('/files/:name', function (req, res) {
+  let fileName = req.params.name;
+
+  res.download(path.join(__dirname, `/uploads/${fileName}`));
 });
 
 app.post('/upload', upload.single('file'), (req, res) => {
@@ -25,5 +31,5 @@ app.post('/upload', upload.single('file'), (req, res) => {
 });
 
 app.listen(80, () => {
-  console.log('Express server listening on port 8080');
+  console.log('Express server listening on port 80');
 });
