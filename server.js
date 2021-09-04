@@ -1,36 +1,20 @@
-require('dotenv').config()
-const express = require('express');
-const multer = require('multer');
-const path = require('path');
+'use strict';
 
-const app = express();
+var app = require('./app.js');
 
-app.use(express.static(__dirname + '/public'));
+require('greenlock-express')
+    .init({
+        packageRoot: __dirname,
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname)
-  }
-})
-const upload = multer({ storage: storage })
+        // contact for security and critical bug notices
+        maintainerEmail: "griffq@hotmail.com",
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '/index.html'));
-});
+        // where to look for configuration
+        configDir: './greenlock.d',
 
-app.get('/files/:name', function (req, res) {
-  let fileName = req.params.name;
-
-  res.download(path.join(__dirname, `/uploads/${fileName}`));
-});
-
-app.post('/upload', upload.single('file'), (req, res) => {
-  return res.status(200).send(req.file);
-});
-
-app.listen(process.env.PORT, () => {
-  console.log(`Express server listening on port ${process.env.PORT}`);
-});
+        // whether or not to run at cloudscale
+        cluster: false
+    })
+    // Serves on 80 and 443
+    // Get's SSL certificates magically!
+    .serve(app);
