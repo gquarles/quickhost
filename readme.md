@@ -5,5 +5,8 @@ A simple lightweight express.js fileserver.
 ```
 git clone https://github.com/gquarles/quickhost
 cd quickhost
+git checkout ssl
 npm install
-node server.js
+node install.js
+npm start
+```
