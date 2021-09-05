@@ -2,10 +2,12 @@ require('dotenv').config()
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
+var serveIndex = require('serve-index');
 
 const app = express();
 
 app.use(express.static(__dirname + '/public'));
+app.use('/files', serveIndex(__dirname + '/uploads'));
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
