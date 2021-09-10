@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
+const publicIp = require('public-ip');
 const expressip = require("express-ip");
 const ipaddr = require("ipaddr.js");
 var serveIndex = require("serve-index");
@@ -23,12 +24,14 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-app.get("/", function (req, res) {
+app.get("/", async function (req, res) {
   if (process.env.EXTERNAL_UPLOADS.toString().toLowerCase() == "false") {
     var userIp = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
     var ipType = ipaddr.process(userIp).range().toString();
 
-    if (ipType != "loopback" && ipType != "private") {
+    var serverIp = await publicIp.v4();
+
+    if (ipType != "loopback" && ipType != "private" && serverIp.toString() != userIp.toString()) {
       res.send("External file upload is disabled.");
     } else {
       res.sendFile(path.join(__dirname, "/index.html"));
