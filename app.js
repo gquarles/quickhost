@@ -28,6 +28,9 @@ app.get("/", function (req, res) {
     var userIp = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
     var ipType = ipaddr.process(userIp).range().toString();
 
+    console.log(`DEV | IP: ${userIp}`);
+    console.log(`Ip detection: ${ipType}`);
+
     if (ipType != "loopback" && ipType != "private") {
       res.send("External file upload is disabled.");
     } else {
