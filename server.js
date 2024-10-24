@@ -44,6 +44,12 @@ app.get("/files/:name", function (req, res) {
   res.download(path.join(__dirname, `/uploads/${fileName}`));
 });
 
+app.get("/html/:name", function (req, res) {
+  let fileName = req.params.name;
+
+  res.sendFile(path.join(__dirname, `/uploads/${fileName}`));
+});
+
 app.post("/upload", upload.single("file"), (req, res) => {
   return res.status(200).send(req.file);
 });
