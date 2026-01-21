@@ -2,4 +2,5 @@ node_modules/
 uploads/
 .greenlockrc
 .greenlock.d/
+greenlock.d/
 .env

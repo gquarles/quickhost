@@ -2,18 +2,21 @@
   "name": "quickhost",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@root/greenlock": "^4.0.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.3",
     "express-ip": "^1.0.4",
+    "greenlock-express": "^4.0.3",
     "ipaddr.js": "^2.0.1",
     "multer": "^1.4.3",
+    "public-ip": "^4.0.4",
     "serve-index": "^1.9.1"
   }
 }
